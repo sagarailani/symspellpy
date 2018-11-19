@@ -570,6 +570,15 @@ class SymSpell(object):
         hash_s |= mask_len
         return hash_s
 
+    def find_updated_terms(self, text, updatedText):
+        textList = helpers.parse_words(text)
+        updatedTextList = helpers.parse_words(updatedText)
+        modifications = dict()
+        for word, updatedWord in zip(textList, updatedTextList):
+            if word != updatedWord:
+                modifications[word] = updatedWord
+        return modifications            
+
     @property
     def deletes(self):
         return self._deletes
